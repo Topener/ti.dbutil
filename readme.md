@@ -7,8 +7,8 @@ Whenever a query is NOT a `SELECT` query it will automatically generate a transa
 ## Why transactions?
 Transactions in SQLite are significantly lighter on performance. Especially when doing many queries. A simple performance test of inserting 1000 items into a database helps illustrate this performance. 
 
-- Insert 1000 items without transactions: 600ms*
-- Insert 1000 items with transactions: 11ms*
+- Run example script (below) without transactions: 757ms*
+- Run example script (below) with transactions: 35ms*
 
 **This test was performed in an iOS 13 Simulator. Device performance is most likely worse than this*
 
