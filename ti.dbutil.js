@@ -29,7 +29,7 @@ function db(options) {
             return database.execute(query);
         }
         clearTimeout(timer);
-        if (transactionStarted === false) {
+        if (transactionStarted === false && !options.noTransactions) {
             database.execute("BEGIN TRANSACTION;");
             transactionStarted = true;
         }
@@ -42,7 +42,7 @@ function db(options) {
      * Commit any pending queries for the transaction
      */
     this.commit = () => {
-        if (!database || queries === 0 || transactionStarted === false) return;
+        if (!database || queries === 0 || transactionStarted === false || options.noTransactions) return;
         Ti.API.info(`ti.dbutil: committing transaction with ${queries} queries`);
         database.execute("COMMIT;");
         resetVars();
@@ -52,7 +52,7 @@ function db(options) {
      * Roll back any pending queries for the transaction
      */
     this.rollback = () => {
-        if (!database || queries === 0 || transactionStarted === false) return;
+        if (!database || queries === 0 || transactionStarted === false || options.noTransactions) return;
         database.execute("ROLLBACK;");
         resetVars();
     }

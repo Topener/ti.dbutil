@@ -66,7 +66,8 @@ const dbutil = new (require('ti.dbutil'))({
     dbname: 'my_data.db', // name of database
     autocommitTimeout: 50, // timeout (in ms) after last query when it should be executed. 50 is default
     encryptedDB: false, // if you want to use the encryptedDatabase module (pro+ subscription required)
-    password: 'pass' // password for the encrypted database
+    password: 'pass', // password for the encrypted database
+    noTransactions: false // set to true to disable transactional queries
 });
 ```
 
